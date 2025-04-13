@@ -1,0 +1,590 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 10, 10, 10;
+    --background-end-rgb: 15, 15, 15;
+    --primary-color: 220, 38, 38;
+    --primary-light: 254, 202, 202;
+    --accent-color: 239, 68, 68;
+    --glass-bg: rgba(25, 25, 25, 0.7);
+    --glass-border: rgba(50, 50, 50, 0.5);
+    --glass-shadow: rgba(0, 0, 0, 0.15);
+    --text-color: 255, 255, 255;
+    --text-muted: 150, 150, 150;
+    
+    /* Tailwind CSS required theme variables */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  color: rgb(var(--text-color));
+  background: rgb(var(--background-start-rgb));
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif; /* Daha modern bir font */
+}
+
+/* Başlıklar için temel stil */
+h1, h2, h3, h4, h5, h6 {
+  color: #1f2937; /* gray-800 */
+}
+
+h1 {
+  font-size: 3rem; /* 48px */
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+}
+
+/* Paragraf stili */
+p {
+  color: #4b5563; /* gray-600 */
+  line-height: 1.6;
+}
+
+/* Modern Buton Stili */
+.btn {
+  @apply px-6 py-3 rounded-lg font-medium shadow transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-6 rounded-lg font-medium shadow-lg shadow-red-900/20 hover:shadow-xl hover:shadow-red-900/30 transition-all btn-pulse;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2;
+}
+
+/* Kart Stili */
+.card {
+  @apply bg-white p-6 rounded-xl shadow-md transition-shadow duration-300;
+}
+
+.card-hover {
+  @apply hover:shadow-lg;
+}
+
+/* Link Stili */
+a {
+  @apply text-red-600 hover:text-red-700 transition-colors duration-200;
+}
+
+/* Global Container */
+.container {
+  @apply max-w-7xl; /* Daha geniş container */
+}
+
+/* Kaldırılan Koyu Tema Stilleri (veya güncellenenler) */
+.glass {
+  /* Açık temada glass efekti farklı görünebilir, isteğe bağlı olarak ayarlanabilir veya kaldırılabilir */
+  /* Örnek: bg-white/60 backdrop-blur-md border border-gray-200 */
+  @apply bg-white/60 backdrop-blur-md border border-gray-200 rounded-xl shadow-sm;
+}
+
+.gradient-text {
+  /* Açık tema için gradient gereksiz olabilir, düz renk tercih edilebilir */
+  /* Eğer kullanılacaksa, açık temaya uygun renkler seçilmeli */
+  color: #dc2626; /* red-600 */
+}
+
+.hover-card {
+  /* Genel kart hover efekti ile birleştirilebilir veya özelleştirilebilir */
+  @apply hover:shadow-lg;
+}
+
+/* Cursor Trail (isteğe bağlı, açık temada görünürlüğü ayarlanmalı) */
+.cursor-trail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(220, 38, 38, 0.5); /* red-600 with opacity */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+  z-index: 9999;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(220, 38, 38, 0.6);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(220, 38, 38, 0.8);
+}
+
+/* Cursor trail animation */
+.cursor-trail {
+  pointer-events: none;
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgb(239, 68, 68);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s ease;
+}
+
+/* Glass effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+}
+
+.glass-card {
+  @apply rounded-xl overflow-hidden;
+  background: rgba(25, 25, 25, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(50, 50, 50, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(30, 30, 30, 0.8);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply font-bold;
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Card hover effects */
+.hover-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Button animations */
+.btn-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-pulse:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-pulse:hover:after {
+  animation: ripple 1.2s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(100, 100);
+    opacity: 0;
+  }
+}
+
+/* Shimmering animation */
+.shimmer {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerEffect 2s infinite;
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Enhanced card designs */
+.fancy-card {
+  @apply relative overflow-hidden rounded-xl;
+  background: linear-gradient(145deg, rgba(35, 35, 35, 0.9), rgba(25, 25, 25, 0.7));
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(50, 50, 50, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(50, 50, 50, 0.2);
+}
+
+.fancy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.15),
+    0 20px 30px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(220, 38, 38, 0.3);
+}
+
+.fancy-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.7), rgba(220, 38, 38, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fancy-card:hover:before {
+  opacity: 1;
+}
+
+/* Enhanced inputs */
+.fancy-input {
+  @apply bg-[#222] border border-[#333] rounded-lg px-4 py-3 w-full transition-all focus:outline-none text-white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fancy-input:focus {
+  @apply border-red-500 ring-2 ring-red-900/30;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-red {
+  @apply bg-red-900/30 text-red-400;
+}
+
+.badge-green {
+  @apply bg-green-900/30 text-green-400;
+}
+
+.badge-blue {
+  @apply bg-blue-900/30 text-blue-400;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Line Clamp */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Heading styles */
+.heading-xl {
+  @apply text-4xl md:text-5xl lg:text-7xl font-bold leading-tight;
+  letter-spacing: -0.02em;
+}
+
+.heading-lg {
+  @apply text-3xl md:text-4xl font-bold leading-tight;
+  letter-spacing: -0.02em;
+}
+
+.heading-md {
+  @apply text-2xl md:text-3xl font-bold leading-tight;
+}
+
+/* Button styles */
+.btn-outline {
+  @apply bg-transparent border border-[#333] text-white py-3 px-6 rounded-lg font-medium shadow-sm hover:bg-white/5 transition-all;
+}
+
+/* Copy button effect */
+.copy-button {
+  @apply rounded-lg px-2 py-1 text-xs uppercase font-bold tracking-wider;
+  background: rgba(220, 38, 38, 0.2);
+  color: rgba(220, 38, 38, 0.8);
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background: rgba(220, 38, 38, 0.3);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+/* Address display */
+.address-display {
+  @apply bg-[#111] rounded-lg p-3 font-mono text-gray-300 overflow-hidden text-sm flex items-center justify-between;
+  border: 1px solid rgba(50, 50, 50, 0.3);
+}
+
+/* Token stats */
+.token-stat {
+  @apply relative flex flex-col p-5 rounded-xl overflow-hidden;
+  background: rgba(25, 25, 25, 0.7);
+  border: 1px solid rgba(50, 50, 50, 0.2);
+}
+
+.token-stat:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.5), rgba(220, 38, 38, 0.1));
+}
+
+.token-stat-value {
+  @apply text-2xl md:text-3xl font-bold;
+  background: linear-gradient(135deg, #fff 0%, #ddd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.token-stat-label {
+  @apply text-sm text-gray-400 mt-1;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Özel animasyonlar */
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-900 {
+  animation-delay: 900ms;
+}
+
+.animation-delay-1200 {
+  animation-delay: 1200ms;
+}
+
+.animation-delay-1500 {
+  animation-delay: 1500ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Pattern background */
+.bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Gelişmiş stil iyileştirmeleri */
+.text-gradient {
+  background: linear-gradient(to right, #ef4444, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gelişmiş kart stilleri */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
